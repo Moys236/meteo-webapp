@@ -19,6 +19,10 @@
       "ouvre": false
     }
   ],
-  "actuelVille": 1,
-  "units": "metric"
+  "actuelVille": {
+    "id": "3"
+  },
+  "units": {
+    "type": "metric"
+  }
 }
