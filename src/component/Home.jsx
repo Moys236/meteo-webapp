@@ -3,74 +3,34 @@ import '../App.css';
 import Content from './Content';
 import Sidebar from './Sidebar';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { setActuel, setForecast } from '../data/meteoSlice';
 
 function Home () {
     const dispatch = useDispatch();
+    const idVille = useSelector(state => state.meteo.actuelVille.id);
     const villes = useSelector(state => state.meteo.villes);
+    const actuelVille = villes.find(v => v.id === idVille);
 
-    const villeOuverte = villes.find(v => v.ouvre);
+    console.log(typeof idVille, ' ', idVille);
+    console.log(villes);
+    console.log(actuelVille);
+
         
-    const [ville, setVille] = useState(villeOuverte.ville);
+    const [ville, setVille] = useState(actuelVille.ville);
 
 
-    useEffect(() => {
-        const villeOuverte = villes.find(v => v.ouvre);
-        if (villeOuverte) {
-        setVille(villeOuverte.ville);
-        }
-    }, [villes, ville]);
+    // useEffect(() => {
+    //     // const idVille = useSelector(state => state.meteo.actuelVille.id);
+    //     // const villes = useSelector(state => state.meteo.villes);
+    //     const actuelVille = villes.find(v => v.id === idVille);
+    //     if (actuelVille) {
+    //        setVille(actuelVille.ville);
+    //     }
+    // }, [villes]);
 
 
-    useEffect(() => {
-        const fetchActuel = async () => {
-        try {
-            const res = await axios.get(
-            "https://api.openweathermap.org/data/2.5/weather",
-            {
-                params: {
-                q: ville,
-                units: "metric",
-                lang: "fr",
-                appid: "89a3d21b7512a3590f5e7e33f2269119"
-                }
-            }
-            );
-            dispatch(setActuel(res.data));
-        } catch (err) {
-            console.error("Error fetching weather data:", err);
-        }
-        };
-
-        const fetchForecast = async () => {
-        try {
-            const res2 = await axios.get(
-            "https://api.openweathermap.org/data/2.5/forecast",
-            {
-                params: {
-                q: ville,
-                units: "metric",
-                lang: "fr", 
-                appid: "89a3d21b7512a3590f5e7e33f2269119",
-                }
-            }
-            )
-            dispatch(setForecast(res2.data.list));
-        }catch(err) {
-            console.error("Error fetching weather data: ", err);
-        }
-        }
+    // useEffect(() => {
         
-        fetchActuel();
-        fetchForecast();
-
-        const villeOuverte = villes.find(v => v.ouvre);
-        if (villeOuverte) {
-        setVille(v => v = villeOuverte.ville);
-        }
-        
-    }, [ville, dispatch]);
+    // }, [ville, dispatch]);
     return (
         <div className="export-wrapper">
             <Sidebar />

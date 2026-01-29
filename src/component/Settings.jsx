@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Icon } from '@iconify/react';
-import { ajtVille, ouvreVille, supprVille } from "../data/meteoSlice";
+import { ajtVille, ouvreVille, suppVille } from "../data/meteoSlice";
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function Settings() {
@@ -17,7 +17,7 @@ function Settings() {
         const ville = nvVille.current.value;
         if (ville.trim()){
             const nvV = {
-                id: Date.now(),
+                id: String(Date.now()),
                 ville : ville, 
                 pays: '-', 
                 ouvre: false
@@ -46,7 +46,7 @@ function Settings() {
                         <span className="settings-city-name">{v.ville}</span>
                         <span className="settings-city-desc">{v.pays}</span>
                     </div>
-                    <div className="settings-delete-icon" onClick={()=> dispatch(supprVille(v.id))} >
+                    <div className="settings-delete-icon" onClick={()=> dispatch(suppVille(v.id))} >
                         <Icon icon={'lucide:trash'} />
                     </div>
                 </div>

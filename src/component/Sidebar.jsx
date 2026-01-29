@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ouvreVille } from '../data/meteoSlice';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar() {
     const villes = useSelector(state => state.meteo.villes);

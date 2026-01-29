@@ -1,19 +1,19 @@
 {
   "villes": [
     {
-      "id": 1,
+      "id": "1",
       "ville": "Tangier",
       "pays": "MA",
       "ouvre": true
     },
     {
-      "id": 2,
+      "id": "2",
       "ville": "Tetouan",
       "pays": "MA",
       "ouvre": false
     },
     {
-      "id": 3,
+      "id": "3",
       "ville": "larache",
       "pays": "MA",
       "ouvre": false
