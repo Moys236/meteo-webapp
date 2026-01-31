@@ -48,12 +48,10 @@ const meteoSlice = createSlice({
 // Villes
 export const fetchVilles = ()=> async (dispatch) => {
     try {
-        console.log("fetching villes started")
         const response = await fetch(`${API_URL}villes`);
         const data = await response.json();
         const list = Array.isArray(data) ? data : [];
         dispatch(setVilles(list));
-        console.log("fetching villes ended")
     } catch (error) {
         console.error('error', error);
     }
@@ -61,12 +59,10 @@ export const fetchVilles = ()=> async (dispatch) => {
 
 export const fetchActuelVille = () => async (dispatch) => {
     try {
-        console.log("fetching actuel ville started")
         const response = await fetch(`${API_URL}actuelVille`);
         const data = await response.json();
         const id = data.id ? data.id : null;
         dispatch(setActuelVille(id));
-        console.log("fetching actuel ville ended")
     } catch (error) {
         console.error('erreur', error);
     }
@@ -74,12 +70,10 @@ export const fetchActuelVille = () => async (dispatch) => {
 
 export const fetchUnits = () => async (dispatch) => {
     try {
-        console.log("fetching actuel ville started")
         const response = await fetch(`${API_URL}units`);
         const data = await response.json();
         const type = data.type ? data.type : null;
         dispatch(setUnits(type));
-        console.log("fetching actuel ville ended")
     } catch (error) {
         console.error('erreur', error);
     }
@@ -90,13 +84,15 @@ export const fetchUnits = () => async (dispatch) => {
 export const fetchMeteoData = () => async (dispatch, getState) => {
     const { actuelVille, units, villes } = getState().meteo;
     const ville = villes.find(v => v.id === actuelVille.id);
+    if (!ville) {
+        console.error("Ville non trouvée");
+        return;
+    }
     const unitsX = units.type;
 
 
     const fetchActuel = async () => {
         try {
-            console.log(ville)
-            console.log(ville.ville)
             const res = await axios.get(
             "https://api.openweathermap.org/data/2.5/weather",
             {
@@ -171,12 +167,11 @@ export const changeUnit = (type) => async (dispatch) => {
         await axios.put(`${API_URL}units`, {type});
         dispatch(fetchUnits())
     } catch (error) {
-        
+        console.error('error', error);
     }
 }
 
 export const initialeFetch = () => async (dispatch) => {
-    console.log('ttttest')
     await dispatch(fetchActuelVille());
     await dispatch(fetchVilles());
     await dispatch(fetchUnits());

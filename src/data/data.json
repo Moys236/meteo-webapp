@@ -23,16 +23,10 @@
       "ville": "rabat",
       "pays": "MA",
       "ouvre": false
-    },
-    {
-      "id": "1769712973242",
-      "ville": "new york",
-      "pays": "US",
-      "ouvre": false
     }
   ],
   "actuelVille": {
-    "id": "2"
+    "id": "1"
   },
   "units": {
     "type": "metric"
