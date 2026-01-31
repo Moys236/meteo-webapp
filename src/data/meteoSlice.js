@@ -15,7 +15,7 @@ const initialState = {
     },
     aLoading: true,
     fLoading: true,
-    error: []
+    error: ''
 };
 
 const meteoSlice = createSlice({
@@ -38,6 +38,9 @@ const meteoSlice = createSlice({
         },
         setUnits(state, action) {
             state.units = {type: action.payload};
+        },
+        setError(state, action){
+            state.error = action.payload
         }
     },
 });
@@ -84,16 +87,22 @@ export const fetchUnits = () => async (dispatch) => {
 
 // fetch data from openweathermap
 
-export const fetchMeteoData = (ville, units) => async (dispatch) => {
+export const fetchMeteoData = () => async (dispatch, getState) => {
+    const { actuelVille, units, villes } = getState().meteo;
+    const ville = villes.find(v => v.id === actuelVille.id);
+    const unitsX = units.type;
+
 
     const fetchActuel = async () => {
         try {
+            console.log(ville)
+            console.log(ville.ville)
             const res = await axios.get(
             "https://api.openweathermap.org/data/2.5/weather",
             {
                 params: {
-                q: ville,
-                units: units,
+                q: ville.ville,
+                units: unitsX,
                 lang: "fr",
                 appid: "89a3d21b7512a3590f5e7e33f2269119"
                 }
@@ -111,8 +120,8 @@ export const fetchMeteoData = (ville, units) => async (dispatch) => {
             "https://api.openweathermap.org/data/2.5/forecast",
             {
                 params: {
-                q: ville,
-                units: units,
+                q: ville.ville,
+                units: unitsX,
                 lang: "fr", 
                 appid: "89a3d21b7512a3590f5e7e33f2269119",
                 }
@@ -157,19 +166,24 @@ export const suppVille = (idVille) => async (dispatch) => {
     }
 }
 
-export const initialeFetch = () => async (dispatch, getState) => {
-  await dispatch(fetchActuelVille());
-  await dispatch(fetchVilles());
-  await dispatch(fetchUnits());
+export const changeUnit = (type) => async (dispatch) => {
+    try {
+        await axios.put(`${API_URL}units`, {type});
+        dispatch(fetchUnits())
+    } catch (error) {
+        
+    }
+}
 
-  const { actuelVille, units, villes } = getState().meteo;
-
-  if (actuelVille?.id && units?.type) {
-    const ville = villes.find(v => v.id === actuelVille.id);
-    dispatch(fetchMeteoData(ville.ville, units.type));
-  }
+export const initialeFetch = () => async (dispatch) => {
+    console.log('ttttest')
+    await dispatch(fetchActuelVille());
+    await dispatch(fetchVilles());
+    await dispatch(fetchUnits());
+    await dispatch(fetchMeteoData());
+  
 };
 
 
 export const meteoReducer = meteoSlice.reducer;
-export const { setActuel, setForecast, setVilles, setActuelVille, setUnits } = meteoSlice.actions; 
+export const { setActuel, setForecast, setVilles, setActuelVille, setUnits, setError } = meteoSlice.actions; 

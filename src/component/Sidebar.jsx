@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Sidebar() {
     const villes = useSelector(state => state.meteo.villes);
+    const actuelVille = useSelector(state => state.meteo.actuelVille.id);
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -30,7 +31,7 @@ function Sidebar() {
             </div>
             <div className="city-list">
               {villes.map((ville)=> (
-                <div className={`city-item ${ville.ouvre ? 'active' : '' }`} key={ville.id}
+                <div className={`city-item ${ville.id === actuelVille ? 'active' : '' }`} key={ville.id}
                   onClick={() => ouvrirVille(ville.id)}>
                   <div className="city-info" onClick={() => ouvrirVille(ville.id)}>
                     <span className="city-name">{ville.ville}</span>
