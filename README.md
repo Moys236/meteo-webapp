@@ -72,18 +72,20 @@ Une application web moderne permettant de consulter la météo en temps réel po
    ```
 
 2. **Configurer les variables d'environnement**
-
    - Copiez le fichier `.env.example` en `.env`
+
    ```bash
    cp .env.example .env
    ```
-   
+
    - Ouvrez le fichier `.env` et remplacez `your_api_key_here` par votre clé API OpenWeatherMap
+
    ```env
    REACT_APP_OPENWEATHER_API_KEY=votre_cle_api_ici
    ```
-   
+
    > **Comment obtenir une clé API ?**
+   >
    > 1. Allez sur [OpenWeatherMap](https://openweathermap.org/api)
    > 2. Créez un compte gratuit
    > 3. Générez une clé API depuis votre tableau de bord
