@@ -46,7 +46,7 @@ const meteoSlice = createSlice({
 });
 
 // Villes
-export const fetchVilles = ()=> async (dispatch) => {
+export const fetchVilles = ()=> async (dispatch ) => {
     try {
         const response = await fetch(`${API_URL}villes`);
         const data = await response.json();
@@ -100,7 +100,7 @@ export const fetchMeteoData = () => async (dispatch, getState) => {
                 q: ville.ville,
                 units: unitsX,
                 lang: "fr",
-                appid: "89a3d21b7512a3590f5e7e33f2269119"
+                appid: process.env.REACT_APP_OPENWEATHER_API_KEY
                 }
             }
             );
@@ -119,7 +119,7 @@ export const fetchMeteoData = () => async (dispatch, getState) => {
                 q: ville.ville,
                 units: unitsX,
                 lang: "fr", 
-                appid: "89a3d21b7512a3590f5e7e33f2269119",
+                appid: process.env.REACT_APP_OPENWEATHER_API_KEY,
                 }
             }
             )

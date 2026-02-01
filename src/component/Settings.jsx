@@ -30,7 +30,7 @@ function Settings() {
                             q: ville.trim(),
                             units: selectedUnit,
                             lang: "fr",
-                            appid: "89a3d21b7512a3590f5e7e33f2269119"
+                            appid: process.env.REACT_APP_OPENWEATHER_API_KEY
                         }
                     }
                 );
