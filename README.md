@@ -1,70 +1,140 @@
-# Getting Started with Create React App
+# 🌤️ Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Une application web moderne permettant de consulter la météo en temps réel pour plusieurs villes. Construite avec React et Redux, cette application offre une interface intuitive et réactive pour visualiser les conditions météorologiques actuelles et les prévisions.
 
-## Available Scripts
+## ✨ Fonctionnalités
 
-In the project directory, you can run:
+### 📍 Gestion des Villes
+- **Plusieurs villes** : Consultez la météo de plusieurs localités
+- **Sélection rapide** : Basculez facilement entre les villes depuis la barre latérale
+- **Informations détaillées** : Localisation par pays et identification unique
+
+### 🌡️ Données Météorologiques
+- **Conditions actuelles** : Température, humidité, vitesse du vent et autres paramètres en temps réel
+- **Prévisions** : Consulter la météo sur plusieurs jours
+- **Unités configurables** : Basculez entre les unités métriques et impériales (Celsius/Fahrenheit)
+
+### 📊 Interface Utilisateur
+- **Tableau de bord** : Vue d'ensemble complète des conditions météorologiques avec grille d'informations
+- **Carrousel** : Navigation fluide à travers les données avec Embla Carousel
+- **Chronologie du lever/coucher du soleil** : Visualisez les heures de lever et coucher du soleil
+- **Écran de chargement** : Indicateurs visuels pendant le chargement des données
+- **Système d'alerte** : Notifications d'erreur intégrées
+
+### ⚙️ Paramètres
+- **Configuration personnalisée** : Ajustez les unités de mesure selon vos préférences
+
+## 🛠️ Technologies Utilisées
+
+### Frontend
+- **React** (v18.2.0) : Bibliothèque JavaScript pour construire l'interface utilisateur
+- **React Router DOM** (v6.28.0) : Gestion du routage et de la navigation
+- **Redux Toolkit** (v2.11.2) : Gestion d'état centralisée et prévisible
+- **React Redux** (v9.2.0) : Intégration de Redux avec React
+
+### HTTP & API
+- **Axios** (v1.13.2) : Client HTTP pour les requêtes vers l'API météo
+
+### Composants UI
+- **Embla Carousel** (v8.6.0) : Carrousel responsive pour afficher les prévisions
+- **Iconify** (v6.0.2) : Bibliothèque d'icônes pour les symboles météorologiques
+
+### Backend Mock
+- **JSON Server** (v1.0.0-beta.5) : Serveur local pour simuler une API REST avec les données météorologiques
+
+### Développement & Tests
+- **React Scripts** (v5.0.1) : Outils de construction et de développement Create React App
+- **Testing Library** : Frameworks de test pour React
+
+## 🚀 Installation
+
+### Prérequis
+- Node.js (v14 ou supérieur)
+- npm ou yarn
+
+### Étapes d'installation
+
+1. **Cloner le dépôt**
+   ```bash
+   git clone <url-du-repo>
+   cd weather-app
+   ```
+
+2. **Installer les dépendances**
+   ```bash
+   npm install
+   ```
+
+3. **Démarrer le serveur JSON (données mock)** (dans un terminal séparé)
+   ```bash
+   npm run json-server
+   ```
+   Le serveur sera disponible sur `http://localhost:4000`
+   
+   > **Note** : Vous devez lancer le serveur JSON dans un terminal séparé avant de démarrer l'application React
+
+4. **Lancer l'application en développement**
+   ```bash
+   npm start
+   ```
+   L'app s'ouvrira automatiquement sur [http://localhost:3000](http://localhost:3000)
+
+## 📦 Scripts Disponibles
 
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Lance l'application en mode développement.
+- L'application se recharge automatiquement lors de modifications
+- Les erreurs s'affichent dans la console
 
 ### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Lance le testeur en mode interactif.
+- Exécute les tests React avec Jest et Testing Library
 
 ### `npm run build`
+Construit l'application pour la production.
+- Optimise et minifie le code
+- Génère des fichiers prêts pour le déploiement dans le dossier `build/`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📁 Structure du Projet
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+weather-app/
+├── public/                  # Fichiers statiques
+├── src/
+│   ├── component/          # Composants React
+│   │   ├── Home.jsx       # Page d'accueil
+│   │   ├── Settings.jsx   # Page des paramètres
+│   │   ├── Sidebar.jsx    # Barre latérale
+│   │   ├── Content.jsx    # Contenu principal
+│   │   ├── Forecast.jsx   # Prévisions
+│   │   ├── GridDashboard.jsx # Tableau de bord
+│   │   ├── SunriseTimeLine.jsx # Chronologie soleil
+│   │   ├── Loading.jsx    # Loader
+│   │   ├── Alert.jsx      # Composant alerte
+│   │   └── carousel.css   # Styles carrousel
+│   ├── data/
+│   │   ├── meteoSlice.js  # Redux slice pour l'état météo
+│   │   ├── store.js       # Configuration Redux store
+│   │   └── data.json      # Données mock
+│   ├── App.js            # Composant principal
+│   ├── App.css           # Styles globaux
+│   └── index.js          # Point d'entrée
+├── build/                 # Dossier de production (généré)
+└── package.json          # Dépendances et scripts
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔄 Flux de Données
 
-### `npm run eject`
+L'application utilise **Redux Toolkit** pour gérer l'état global :
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Actions** : Récupération des données (fetch)
+2. **Reducers** : Mise à jour de l'état météo
+3. **Sélecteurs** : Accès à l'état depuis les composants
+4. **Effects** : Synchronisation avec le serveur via hooks `useEffect`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📝 Notes de Développement
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Le serveur JSON (`json-server`) doit être lancé avant l'application
+- L'API est configurée sur `http://localhost:4000/`
+- Les données sont stockées dans [data.json](src/data/data.json)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
