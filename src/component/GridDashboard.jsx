@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react";
 import { dailyMeteo as getDailyMeteo } from "../data/dailyMeteo";
 import { useSelector } from "react-redux";
 import Loading from "./Loading";
+import SunriseTimeline from "./SunriseTimeLine";
 
 const getVisibilityStatus = (visibility, isMetric) => {
 
@@ -235,7 +236,8 @@ function GridDashboard() {
             style={{ fontSize: 16, color: "var(--warning)" }}
           />
         </div>
-        <div className="sunrise-timeline">
+        <SunriseTimeline sunrise={sunrise} sunset={sunset} />
+        {/* <div className="sunrise-timeline">
           <svg
             width="100%"
             height="40"
@@ -282,7 +284,7 @@ function GridDashboard() {
           >
             {sunset}
           </div>
-        </div>
+        </div> */}
         <div className="stat-footer" style={{ marginTop: 24 }}>
           Durée du jour : {dureeJr}
         </div>
