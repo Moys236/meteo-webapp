@@ -1,0 +1,40 @@
+{
+  "villes": [
+    {
+      "id": "1769943735509",
+      "ville": "tangier",
+      "pays": "MA",
+      "ouvre": false
+    },
+    {
+      "id": "1770144334340",
+      "ville": "شفشاون",
+      "pays": "MA",
+      "ouvre": false
+    },
+    {
+      "id": "1770147809046",
+      "ville": "La Mecque",
+      "pays": "SA",
+      "ouvre": false
+    },
+    {
+      "id": "1770147990440",
+      "ville": "Rabat",
+      "pays": "MA",
+      "ouvre": false
+    },
+    {
+      "id": "1770884804841",
+      "ville": "Tajinan",
+      "pays": "ID",
+      "ouvre": false
+    }
+  ],
+  "actuelVille": {
+    "id": "1770144334340"
+  },
+  "units": {
+    "type": "metric"
+  }
+}
