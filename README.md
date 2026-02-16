@@ -3,7 +3,7 @@
 Application web météo moderne permettant de consulter les prévisions en temps réel avec authentification utilisateur et personnalisation des préférences.
 
 **Réalisé par :**
-Nom : **CHLIAH Mohamed Yassine**
+**CHLIAH Mohamed Yassine**   
 Email : mohamdysn2365@gmail.com
 
 ## 1. Présentation du projet
@@ -76,7 +76,7 @@ Cette navigation permet une gestion personnalisée et rapide de vos préférence
 #### a) Cloner le projet
 
 ```bash
-git clone <url-du-repo>
+git clone https://github.com/Moys236/meteo-webapp.git
 cd weather-app
 ```
 
